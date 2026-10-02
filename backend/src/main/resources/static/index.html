@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pedidos | Centro de operaciones</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#resumen"><span class="brand-mark">P</span><span><strong>Pedidos</strong><small>Centro de operaciones</small></span></a>
+      <nav class="nav" aria-label="Navegacion principal">
+        <a href="#resumen" data-view="resumen"><span>01</span> Resumen</a>
+        <a href="#catalogo" data-view="catalogo"><span>02</span> Catalogo</a>
+        <a href="#nuevo" data-view="nuevo"><span>03</span> Nuevo pedido</a>
+        <a href="#metricas" data-view="metricas"><span>04</span> Metricas</a>
+      </nav>
+      <div class="sidebar-foot"><span class="status-dot"></span><span>API conectada</span><a href="/swagger-ui/index.html" target="_blank" rel="noreferrer">Abrir Swagger <b>↗</b></a></div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar"><div><p class="eyebrow">TIENDA EN LINEA / OPERACIONES</p><h1 id="page-title">Resumen de pedidos</h1></div><div class="top-actions"><span id="clock"></span><button class="icon-button" id="refresh" title="Actualizar datos">↻</button></div></header>
+      <div id="notice" class="notice" role="status" hidden></div>
+
+      <section class="view" data-page="resumen">
+        <div class="hero-row"><div><p class="kicker">Buenos dias, operador</p><h2>Todo el flujo, en un solo lugar.</h2><p class="muted">Controla inventario, pagos y despacho desde este panel.</p></div><a class="primary-button" href="#nuevo">+ Crear pedido</a></div>
+        <div class="stat-grid" id="summary-stats"><div class="stat-card loading"></div><div class="stat-card loading"></div><div class="stat-card loading"></div><div class="stat-card loading"></div></div>
+        <div class="content-grid"><article class="panel panel-wide"><div class="panel-heading"><div><p class="eyebrow">INVENTARIO</p><h3>Productos destacados</h3></div><a href="#catalogo">Ver catalogo →</a></div><div class="product-list" id="summary-products"></div></article><article class="panel"><div class="panel-heading"><div><p class="eyebrow">ACCESOS RAPIDOS</p><h3>Herramientas</h3></div></div><div class="quick-links"><a href="/api/health" target="_blank"><b>API</b><span>Estado del servicio</span><i>↗</i></a><a href="/swagger-ui/index.html" target="_blank"><b>DOC</b><span>Probar endpoints</span><i>↗</i></a><a href="#metricas"><b>DATA</b><span>Metricas de negocio</span><i>→</i></a></div></article></div>
+      </section>
+
+      <section class="view" data-page="catalogo" hidden><div class="section-heading"><div><p class="eyebrow">CATALOGO / STOCK EN TIEMPO REAL</p><h2>Productos</h2></div><button class="secondary-button" id="catalog-refresh">↻ Actualizar</button></div><div class="catalog-grid" id="catalog-grid"></div></section>
+
+      <section class="view" data-page="nuevo" hidden><div class="section-heading"><div><p class="eyebrow">OPERACIONES / NUEVO PEDIDO</p><h2>Crear pedido</h2><p class="muted">La reserva se realiza al confirmar este formulario.</p></div></div><div class="form-layout"><form class="panel order-form" id="order-form"><label>Correo del cliente<input type="email" name="email" placeholder="cliente@correo.com" required></label><label>Canal<select name="canal"><option>WEB</option><option>INSTAGRAM</option><option>FACEBOOK</option><option>WHATSAPP</option></select></label><label>Producto<select name="sku" id="order-product"></select></label><label>Cantidad<input type="number" name="cantidad" min="1" value="1" required></label><button class="primary-button" type="submit">Reservar y crear pedido</button></form><aside class="panel order-help"><span class="large-symbol">+</span><p class="eyebrow">FLUJO SEGURO</p><h3>Reserva todo o nada</h3><p class="muted">El sistema bloquea el inventario disponible, crea el pedido pendiente de pago y te entrega una referencia para continuar.</p><div class="steps"><span><b>01</b> Reserva</span><span><b>02</b> Pago</span><span><b>03</b> Despacho</span></div></aside></div><div id="order-result"></div></section>
+
+      <section class="view" data-page="metricas" hidden><div class="section-heading"><div><p class="eyebrow">ANALITICA / RENDIMIENTO</p><h2>Metricas de negocio</h2></div><button class="secondary-button" id="metrics-refresh">↻ Actualizar</button></div><div class="metrics-layout"><div class="panel metric-main"><p class="eyebrow">PEDIDOS POR ESTADO</p><div id="state-bars"></div></div><div class="panel metric-numbers" id="metric-numbers"></div></div></section>
+    </main>
+  </div>
+  <script src="/app.js"></script>
+</body>
+</html>
