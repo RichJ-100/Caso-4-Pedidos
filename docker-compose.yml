@@ -18,6 +18,11 @@ services:
   backend:
     build: ./backend
     env_file: .env
+    # En este Codespace la red bridge entre contenedores no enruta hacia db.
+    # El puerto publicado de PostgreSQL sí está disponible desde la red host.
+    network_mode: host
+    environment:
+      DB_URL: jdbc:postgresql://localhost:5432/pedidos
     ports:
       - "8080:8080"
     depends_on:
