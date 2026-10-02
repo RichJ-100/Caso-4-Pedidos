@@ -1,0 +1,16 @@
+{
+  "name": "Caso 4 - Pedidos tienda en linea",
+  "build": { "dockerfile": "Dockerfile" },
+  "features": { "ghcr.io/devcontainers/features/docker-in-docker:2": {} },
+  "forwardPorts": [8080, 5432],
+  "portsAttributes": { "8080": { "label": "API pedidos" } },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vscjava.vscode-java-pack",
+        "vmware.vscode-boot-dev-pack",
+        "ms-azuretools.vscode-docker"
+      ]
+    }
+  }
+}
